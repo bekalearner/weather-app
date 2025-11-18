@@ -7,6 +7,10 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 :root {
   --color-gradient: linear-gradient(
     270deg,

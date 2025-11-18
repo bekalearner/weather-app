@@ -21,14 +21,6 @@
 
 <template>
   <div class="content-wrapper">
-    <!-- Video Background -->
-    <div class="video-background">
-      <video ref="videoRef" autoplay muted loop class="background-video">
-        <source src="/weather/bg/windy.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
     <div class="content-overlay">
       <slot></slot>
     </div>
@@ -39,42 +31,41 @@
   .content-wrapper {
     position: relative;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, 
+      #0f172a 0%, 
+      #1e293b 25%, 
+      #334155 50%, 
+      #475569 75%, 
+      #64748b 100%
+    );
   }
 
   .content-wrapper::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     content: '';
-    background: var(--color-black);
-    opacity: 0.6;
-  }
-
-  .video-background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-  }
-
-  .background-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
   }
 
   .content-overlay {
     position: relative;
     z-index: 1;
-    padding: 20px;
-    color: white;
-    font-size: 24px;
-    text-align: center;
+    padding: 40px 20px;
+  }
+
+  @media (max-width: 768px) {
+    .content-overlay {
+      padding: 20px 10px;
+    }
   }
 </style>

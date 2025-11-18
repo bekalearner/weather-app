@@ -1,5 +1,5 @@
 <script setup>
-  import { WeatherIcon } from '@/shared'
+  import WeatherIcon from '@/shared/ui/weather-icon/index.vue'
   const emit = defineEmits(['click'])
   const { id } = defineProps({
     id: {
@@ -34,7 +34,7 @@
 
 <template>
   <div
-    class="card p-24 bg-primary-60 flex flex-col items-center gap-14 w-full rounded-xl"
+    class="card p-24 bg-primary-60 flex flex-col items-center gap-14 rounded-xl"
     @click="handleClick"
   >
     <weather-icon :size="48" :code="validateCode(code)" />
@@ -47,19 +47,31 @@
 
 <style scoped>
   .card {
+    min-width: 120px;
     color: var(--color-white);
     cursor: pointer;
-    transition: all 0.1s linear;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
   }
+  
   .card-active {
-    background-color: var(--color-white);
-    color: var(--color-primary-60);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    color: #0ea5e9;
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
   }
 
   .card:hover {
-    background-color: var(--color-primary-50);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.5) 0%, rgba(59, 130, 246, 0.5) 100%);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.5);
+    border-color: rgba(14, 165, 233, 0.5);
   }
+  
   .card-active:hover {
-    background-color: var(--color-primary-10);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 1) 100%);
+    transform: translateY(-4px) scale(1.02);
   }
 </style>
